@@ -1,0 +1,11 @@
+{
+  "name": "epektaino",
+  "version": "v0.0.1",
+  "keywords": [
+    "education",
+    "student project"
+  ],
+  "dependencies": {
+    "swagger2-koa": "0.0.36"
+  }
+}

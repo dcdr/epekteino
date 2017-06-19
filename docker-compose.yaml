@@ -1,0 +1,68 @@
+version: '2.1'
+services:
+  users-db:
+    container_name: users-db
+    build: ./services/users/src/db
+    volumes: 
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'
+    environment:
+      - MONGO_USER=admin
+      - MONGO_PASSWORD=admin
+    healthcheck:
+      test: exit 0
+  users-service:
+    container_name: users-service
+    build: ./services/users/
+    volumes:
+      - './services/users:/src/app'
+      - './services/users/package.json:/src/package.json'
+    ports:
+      - '3000:3000'
+    environment:
+      - MONGO_URL='mongodb://localhost:27017/epekteino/dev'
+      - MONGO__TEST_URL='mongodb://localhost:27017/epekteino/test'
+      - NODE_ENV=${NODE_ENV}
+      - TOKEN_SECRET=changeme
+    depends_on:
+      users-db:
+        condition: service_healthy
+    links:
+      - users-db
+  # web:
+  #   container_name: web
+  #   build: ./web/
+  #   volumes:
+  #     - './web:/src/app'
+  #     - './web/package.json:/src/package.json'
+  #   ports:
+  #     - '3003:3003'
+  #   environment:
+  #     - NODE_ENV=${NODE_ENV}
+  #     - SECRET_KEY=changeme
+  #   depends_on:
+  #     users-service:
+  #       condition: service_started
+  #     locations-service:
+  #       condition: service_started
+  #   links:
+  #     - users-service
+  #     - locations-service
+  # tests:
+  #   container_name: tests
+  #   build: ./tests/
+  #   volumes:
+  #     - './tests:/src/app'
+  #     - './tests/package.json:/src/package.json'
+  #   depends_on:
+  #     users-service:
+  #       condition: service_started
+  #     locations-service:
+  #       condition: service_started
+  #   links:
+  #     - users-service
+  #     - locations-service
+  #     - web
+volumes:
+  mongo-data:

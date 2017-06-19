@@ -1,0 +1,42 @@
+{
+  "name": "user_service",
+  "version": "v0.0.1",
+  "keywords": [
+    "epekteino",
+    "users",
+    "microservice"
+  ],
+  "scripts": {
+    "start": "gulp --gulpfile src/gulpfile.js",
+    "test": "./node_modules/mocha/bin/_mocha 'app/tests/**/*.test.js'"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.6.8",
+    "dotenv": "~2.0.0",
+    "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.8",
+    "morgan": "^1.8.2",
+    "pg": "^6.1.4",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0",
+    "swagger2-koa": "0.0.36"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^3.18.0",
+    "eslint-config-airbnb-base": "^11.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-nodemon": "^2.2.1",
+    "mocha": "^3.2.0",
+    "mongodb": "^2.2.26",
+    "mongodb-migrations": "^0.8.5",
+    "mongoose-seed": "^0.3.2"
+  }
+}

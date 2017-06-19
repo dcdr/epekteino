@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "jsonwebtoken": "^7.4.1",
+    "uuid": "^3.1.0"
+  }
+}
